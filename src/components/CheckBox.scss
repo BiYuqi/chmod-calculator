@@ -1,0 +1,28 @@
+@import '../styles/variable';
+
+.checkbox-container{
+  text-align: right;
+  margin-bottom: 25px;
+  label {
+    font-size: 24px;
+    font-weight: bold;
+    color: $color-dark;
+    cursor: pointer;
+  }
+
+  input{
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  @media screen and(max-width: 800px) {
+    & {
+      text-align: right;
+      margin-bottom: 10px;
+
+      label {
+        font-size: 18px;
+      }
+    }
+  }
+}

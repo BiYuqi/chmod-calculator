@@ -1,0 +1,30 @@
+@import '../styles/variable';
+
+.chmod-select{
+  user-select: none;
+  h2 {
+    margin-bottom: 20px;
+    font-size: 35px;
+    color: $color-dark;
+  }
+
+  @media screen and(max-width: 800px) {
+    & {
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-bottom: 1px solid $color-dark-light;
+
+      h2 {
+        font-size: 24px;
+      }
+
+      &-container {
+
+      }
+    }
+  }
+}

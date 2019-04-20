@@ -1,0 +1,28 @@
+@import '../styles/variable';
+
+.chmod-header{
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 50px;
+  h1 {
+    font-size: 60px;
+    color: $color-dark;
+  }
+  p {
+    color: $color-dark-light;
+    font-size: 30px;
+  }
+
+  @media screen and(max-width: 800px) {
+    & {
+      margin-bottom: 0;
+    }
+
+    h1 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
+}
