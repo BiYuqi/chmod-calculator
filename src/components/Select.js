@@ -17,38 +17,28 @@ class Select extends Component {
   handleRead = (event) => {
     this.setState({
       read: event.target.checked
-    }, () => {
-      this.props.onSelectChange({
-        read: this.state.read,
-        write: this.state.write,
-        execute: this.state.execute
-      })
-    });
+    }, () => this.setSelectChangeData());
   };
 
   handleWrite = (event) => {
     this.setState({
       write: event.target.checked
-    }, () => {
-      this.props.onSelectChange({
-        read: this.state.read,
-        write: this.state.write,
-        execute: this.state.execute
-      })
-    });
+    }, () => this.setSelectChangeData());
   };
 
   handleExecute = (event) => {
     this.setState({
       execute: event.target.checked
-    }, () => {
-      this.props.onSelectChange({
-        read: this.state.read,
-        write: this.state.write,
-        execute: this.state.execute
-      })
-    });
+    }, () => this.setSelectChangeData());
   };
+
+  setSelectChangeData() {
+    this.props.onSelectChange({
+      read: this.state.read,
+      write: this.state.write,
+      execute: this.state.execute
+    })
+  }
 
   render() {
     const { title, read, write, execute } = this.state;
