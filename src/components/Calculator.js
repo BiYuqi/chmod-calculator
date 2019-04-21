@@ -75,6 +75,7 @@ class Calculator extends Component {
             type="text"
             value={inputValue}
             onChange={this.onTodoChange}
+            readOnly
           />
         </div>
         <Usage inputValue={inputValue} />

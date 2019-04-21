@@ -24,6 +24,10 @@
       border: 1px solid $color-dark-light;
       border-radius: 4px;
       padding: 2px;
+      text-align: center;
+      font-size: 18px;
+      color: $color-dark;
+      letter-spacing: 1px;
     }
 
     &__code-block {
