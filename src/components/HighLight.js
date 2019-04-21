@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import hljs from 'highlight.js/lib/highlight';
-import bash from 'highlight.js/lib/languages/bash';
+import shell from 'highlight.js/lib/languages/shell';
 import 'highlight.js/styles/github.css';
 
 export default class HighLight extends Component {
@@ -8,6 +8,7 @@ export default class HighLight extends Component {
     super(props);
     this.highLight = React.createRef();
   }
+
   componentDidMount() {
     this.highlightCode()
   }
@@ -17,14 +18,15 @@ export default class HighLight extends Component {
   }
 
   highlightCode() {
-    hljs.registerLanguage('bash', bash);
-    hljs.highlightBlock(this.highLight.current);
+    hljs.registerLanguage('bash', shell);
+    hljs.highlightBlock(this.highLight.current)
   }
 
   render() {
+    const { children } = this.props;
     return (
       <pre ref={this.highLight} className={this.props.className}>
-        <code>{this.props.children}</code>
+        <code>{children}</code>
       </pre>
     )
   }
