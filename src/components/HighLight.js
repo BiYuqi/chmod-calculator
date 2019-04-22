@@ -1,12 +1,13 @@
 import React from 'react';
 import marked from 'marked';
-import 'highlight.js/styles/github.css';
+import highlight from 'highlight.js';
+import 'highlight.js/styles/googlecode.css';
 import './HighLight.scss';
 
 const renderMarked = (markdown) => {
   marked.setOptions({
     renderer: new marked.Renderer(),
-    highlight: (code) => require('highlight.js').highlightAuto(code).value,
+    highlight: (code) => highlight.highlightAuto(code).value,
     pedantic: false,
     gfm: true,
     tables: true,
@@ -20,9 +21,12 @@ const renderMarked = (markdown) => {
   return {__html: marked(markdown)}
 };
 
-const HighLight = ({ markdown}) => {
+const HighLight = ({ markdown }) => {
   return (
-    <div dangerouslySetInnerHTML={renderMarked(markdown)} />
+    <div
+      className="fire-highlight"
+      dangerouslySetInnerHTML={renderMarked(markdown)}
+    />
   )
 };
 
