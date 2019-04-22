@@ -3,31 +3,27 @@ import marked from 'marked';
 import 'highlight.js/styles/github.css';
 import './HighLight.scss';
 
-export default class HighLight extends Component {
-  constructor(props) {
-    super(props);
-  }
+const renderMarked = (markdown) => {
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: (code) => require('highlight.js').highlightAuto(code).value,
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+  });
 
-  renderMarked() {
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      highlight: (code) => require('highlight.js').highlightAuto(code).value,
-      pedantic: false,
-      gfm: true,
-      tables: true,
-      breaks: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      xhtml: false
-    });
+  return {__html: marked(markdown)}
+}
 
-    return {__html: marked(this.props.markdown)}
-  }
-
-  render() {
-    return (
-      <div dangerouslySetInnerHTML={this.renderMarked()} />
-    )
-  }
+const = HighLight = ({ markdown}) => {
+  return (
+    <div dangerouslySetInnerHTML={renderMarked(markdown)} />
+  )
 };
+
+export default HighLight;
