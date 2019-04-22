@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import marked from 'marked';
 import 'highlight.js/styles/github.css';
 import './HighLight.scss';
@@ -18,9 +18,9 @@ const renderMarked = (markdown) => {
   });
 
   return {__html: marked(markdown)}
-}
+};
 
-const = HighLight = ({ markdown}) => {
+const HighLight = ({ markdown}) => {
   return (
     <div dangerouslySetInnerHTML={renderMarked(markdown)} />
   )
