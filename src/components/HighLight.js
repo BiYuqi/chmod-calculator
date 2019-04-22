@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
-import hljs from 'highlight.js/lib/highlight';
-import shell from 'highlight.js/lib/languages/shell';
+import marked from 'marked';
 import 'highlight.js/styles/github.css';
 import './HighLight.scss';
 
 export default class HighLight extends Component {
   constructor(props) {
     super(props);
-    this.highLight = React.createRef();
   }
 
-  componentDidMount() {
-    this.highlightCode()
-  }
+  renderMarked() {
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      highlight: (code) => require('highlight.js').highlightAuto(code).value,
+      pedantic: false,
+      gfm: true,
+      tables: true,
+      breaks: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      xhtml: false
+    });
 
-  componentDidUpdate() {
-    this.highlightCode()
-  }
-
-  highlightCode() {
-    hljs.registerLanguage('shell', shell);
-    hljs.highlightBlock(this.highLight.current)
+    return {__html: marked(this.props.markdown)}
   }
 
   render() {
-    const { children } = this.props;
     return (
-      <pre ref={this.highLight} className={`highlight-default ${this.props.className}`}>
-        <code>{children}</code>
-      </pre>
+      <div dangerouslySetInnerHTML={this.renderMarked()} />
     )
   }
 };
