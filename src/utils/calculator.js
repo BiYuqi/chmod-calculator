@@ -1,17 +1,23 @@
-const readMapping = (value) => {
-  return value ? 4 : 0
+// number
+// symbol
+const readMapping = (value, mode = 'number') => {
+  return mode === 'number' ? value ? 4 : 0 : value ? 'r' : '-'
 };
 
-const writeMapping = (value) => {
-  return value ? 2 : 0
+const writeMapping = (value, mode = 'number') => {
+  return mode === 'number' ? value ? 2 : 0 : value ? 'w' : '-'
 };
 
-const executeMapping = (value) => {
-  return value ? 1 : 0
+const executeMapping = (value, mode = 'number') => {
+  return mode === 'number' ? value ? 1 : 0 : value ? 'x' : '-'
 };
 
 export const calculator = ({ read, write, execute }) => {
-  return readMapping(read) + writeMapping(write) + executeMapping(execute)
+  return readMapping(read, 'number') + writeMapping(write, 'number') + executeMapping(execute, 'number')
+};
+
+export const parseCalculatorToSymbol = ({ read, write, execute }) => {
+  return readMapping(read, 'symbol') + writeMapping(write, 'symbol') + executeMapping(execute, 'symbol')
 };
 
 export const decodeCalculator = (value) => {

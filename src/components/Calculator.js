@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Select from './Select'
 import Usage from './Usage';
-import { calculator } from '../utils/calculator';
+import { calculator, parseCalculatorToSymbol } from '../utils/calculator';
 import './Calculator.scss';
 
 class Calculator extends Component {
@@ -10,56 +10,52 @@ class Calculator extends Component {
     super(props);
     this.state = {
       ownerSec: '0',
+      ownerSym: '---',
       groupSec: '0',
+      groupSym: '---',
       publicSec: '0',
-      inputValue: ''
+      publicSym: '---',
+      inputValue: '',
+      symbolValue: ''
     }
   }
-
+  // TODO optimize below function
   componentDidMount() {
     this.setState({
-      inputValue: `${this.state.ownerSec}${this.state.groupSec}${this.state.publicSec}`
+      inputValue: `${this.state.ownerSec}${this.state.groupSec}${this.state.publicSec}`,
+      symbolValue: `${this.state.ownerSym}${this.state.groupSym}${this.state.publicSym}`,
     })
   }
 
   handleOwner = (data) => {
     this.setState({
       ownerSec: calculator(data),
-      inputValue: `${calculator(data)}${this.state.groupSec}${this.state.publicSec}`
+      ownerSym: parseCalculatorToSymbol(data),
+      inputValue: `${calculator(data)}${this.state.groupSec}${this.state.publicSec}`,
+      symbolValue: `${parseCalculatorToSymbol(data)}${this.state.groupSym}${this.state.publicSym}`,
     })
   };
 
   handleGroup = (data) => {
     this.setState({
       groupSec: calculator(data),
-      inputValue: `${this.state.ownerSec}${calculator(data)}${this.state.publicSec}`
+      groupSym: parseCalculatorToSymbol(data),
+      inputValue: `${this.state.ownerSec}${calculator(data)}${this.state.publicSec}`,
+      symbolValue: `${this.state.ownerSym}${parseCalculatorToSymbol(data)}${this.state.publicSym}`,
     })
   };
 
   handlePublic = (data) => {
     this.setState({
       publicSec: calculator(data),
-      inputValue: `${this.state.ownerSec}${this.state.groupSec}${calculator(data)}`
+      publicSym: parseCalculatorToSymbol(data),
+      inputValue: `${this.state.ownerSec}${this.state.groupSec}${calculator(data)}`,
+      symbolValue: `${this.state.ownerSym}${this.state.groupSym}${parseCalculatorToSymbol(data)}`,
     })
   };
 
-  onTodoChange = (event) => {
-    const value = event.target.value;
-    if (!/^[1234567]{3}$/.test(value)) {
-      const data = value.replace(/[^\d]*/gi, '').substring(0, 3);
-      this.setState({
-        inputValue: data
-      });
-    } else {
-      this.setState({
-        inputValue: event.target.value
-      });
-    }
-
-  };
-
   render() {
-    const { inputValue } = this.state;
+    const { inputValue, symbolValue, ownerSym, groupSym, publicSym } = this.state;
 
     return (
       <div className="calculator">
@@ -71,14 +67,12 @@ class Calculator extends Component {
         </div>
         <div className="calculator-display">
           <h2>Linux Permissions:</h2>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={this.onTodoChange}
-            readOnly
-          />
+          <div className="calculator-display__input">
+            <input type="text" value={inputValue} readOnly/>
+            <input type="text" value={symbolValue} readOnly/>
+          </div>
         </div>
-        <Usage inputValue={inputValue} />
+        <Usage inputValue={inputValue} symbolValue={{ownerSym, groupSym, publicSym}} />
       </div>
     );
   }

@@ -18,21 +18,22 @@
       margin-bottom: 20px;
     }
 
-    input {
-      outline: none;
-      width: 100px;
-      height: 40px;
-      border: 1px solid $color-dark-light;
-      border-radius: 4px;
-      padding: 2px;
-      text-align: center;
-      font-size: 18px;
-      color: $color-dark;
-      letter-spacing: 1px;
-    }
-
-    &__code-block {
-      //text-align: initial;
+    &__input {
+      display: flex;
+      justify-content: center;
+      input {
+        outline: none;
+        width: 100px;
+        height: 40px;
+        border: 1px solid $color-dark-light;
+        border-radius: 4px;
+        padding: 2px;
+        text-align: center;
+        font-size: 18px;
+        color: $color-dark;
+        letter-spacing: 1px;
+        margin: 0 30px;
+      }
     }
   }
 
