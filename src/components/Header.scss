@@ -7,6 +7,20 @@
   h1 {
     font-size: 60px;
     color: $color-dark;
+
+    a {
+      font-size: 14px;
+      color: $color-dark-light;
+      text-decoration: none;
+
+      &:visited {
+        color: $color-dark-light;
+      }
+
+      &:hover {
+        color: $color-dark;
+      }
+    }
   }
   p {
     color: $color-dark-light;
