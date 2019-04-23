@@ -1,7 +1,7 @@
 import React from 'react';
 import marked from 'marked';
 import highlight from 'highlight.js';
-import 'highlight.js/styles/googlecode.css';
+import 'highlight.js/styles/github.css';
 import './HighLight.scss';
 
 const renderMarked = (markdown) => {
